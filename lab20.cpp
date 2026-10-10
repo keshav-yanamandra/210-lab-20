@@ -1,8 +1,19 @@
+// Keshav Yanamandra
+// COMSC-210-5293, Fall 2026
+// Lab 20
+
+
 #include <iostream>
 #include <iomanip>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 const int SIZE = 3;
+const int MIN_LEGS = 3;
+const int MAX_LEGS = 4;
+const int MIN_PRICE = 10000;
+const int MAX_PRICE = 99999;
 
 class Chair {
 private:
@@ -10,11 +21,17 @@ private:
     double * prices;
 public:
     // constructors
+
     Chair() {
         prices = new double[SIZE];
-        legs = 0;
-        for (int i = 0; i < SIZE; i++)
-            prices[i] = 0;
+
+        legs = rand() % (MAX_LEGS - MIN_LEGS + 1) + MIN_LEGS;
+
+        // random technique from the Lab 20 page
+        for (int i = 0; i < SIZE; i++) {
+            int randomPrice = rand() % (MAX_PRICE - MIN_PRICE + 1) + MIN_PRICE;
+            prices[i] = randomPrice / (double) 100;
+        }
     }
     Chair(int l) {
         prices = new double[SIZE];
@@ -24,8 +41,12 @@ public:
     }
 
     // setters and getters
-    void setLegs(int l)      { legs = l; }
-    int getLegs()            { return legs; }
+    void setLegs(int l){ 
+        legs = l; 
+    }
+    int getLegs(){ 
+        return legs; 
+    }
 
     void setPrices(double p1, double p2, double p3) { 
         prices[0] = p1; prices[1] = p2; prices[2] = p3; 
@@ -49,6 +70,8 @@ public:
 };
 
 int main() {
+    srand(time(0));
+
     cout << fixed << setprecision(2);
 
     //creating pointer to first chair object
