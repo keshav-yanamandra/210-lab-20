@@ -33,13 +33,14 @@ public:
             prices[i] = randomPrice / (double) 100;
         }
     }
-    Chair(int l) {
+    Chair(int l, double p[]) {
         prices = new double[SIZE];
         legs = l;
-        for (int i = 0; i < SIZE; i++)
-            prices[i] = 0;
-    }
 
+        for (int i = 0; i < SIZE; i++) {
+            prices[i] = p[i];
+        }
+    }
     // setters and getters
     void setLegs(int l){ 
         legs = l; 
@@ -81,9 +82,10 @@ int main() {
     chairPtr->print();
 
     //creating dynamic chair object with constructor
-    Chair *livingChair = new Chair(3);
-    livingChair->setPrices(525.25, 434.34, 252.52);
+    double livingPrices[SIZE] = {525.25, 434.34, 252.52};
+    Chair *livingChair = new Chair(3, livingPrices);
     livingChair->print();
+
     delete livingChair;
     livingChair = nullptr;
 
