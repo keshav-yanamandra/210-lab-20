@@ -75,11 +75,15 @@ int main() {
 
     cout << fixed << setprecision(2);
 
+    cout << "Default constructor, then setters" << endl;
+
     //creating pointer to first chair object
     Chair *chairPtr = new Chair;
     chairPtr->setLegs(4);
     chairPtr->setPrices(121.21, 232.32, 414.14);
     chairPtr->print();
+
+    cout << "Parameter constructor with legs and prices" << endl;
 
     //creating dynamic chair object with constructor
     double livingPrices[SIZE] = {525.25, 434.34, 252.52};
@@ -88,6 +92,8 @@ int main() {
 
     delete livingChair;
     livingChair = nullptr;
+
+    cout << "Default constructor - random chairs" << endl;
 
     //creating dynamic array of chair objects
     Chair *collection = new Chair[SIZE];
